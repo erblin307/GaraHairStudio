@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <radialGradient id="g" cx="50%" cy="46%" r="60%">
+      <stop offset="0" stop-color="#2d4a36"/>
+      <stop offset=".6" stop-color="#18291e"/>
+      <stop offset="1" stop-color="#0f1c14"/>
+    </radialGradient>
+  </defs>
+  <rect width="512" height="512" fill="url(#g)"/>
+  <g fill="#e8e1cf" font-family="'Cormorant Garamond', 'Times New Roman', serif" text-anchor="middle">
+    <text x="256" y="292" font-size="118" letter-spacing="6">GARA</text>
+    <text x="256" y="206" font-size="18" letter-spacing="4" fill="#c9b98c">THE ART OF THE CUT</text>
+  </g>
+  <g stroke="#9d9070" stroke-width="1.5">
+    <line x1="60" y1="199" x2="92" y2="199"/>
+    <line x1="420" y1="199" x2="452" y2="199"/>
+  </g>
+</svg>

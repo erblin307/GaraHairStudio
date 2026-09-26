@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="sq">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>GARA Hair Studio — Barber në Prishtinë</title>
+  <meta name="description" content="GARA Hair Studio — barbershop për meshkuj në Prishtinë. Prerje klasike dhe moderne, fade, rregullim mjekre dhe trajtime me brisk. Rezervo terminin online.">
+  <meta name="theme-color" content="#0d1510">
+
+  <meta property="og:title" content="GARA Hair Studio — The Art of the Cut">
+  <meta property="og:description" content="Barbershop për meshkuj në Prishtinë. Rezervo terminin online.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/og-image.png">
+
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="GARA">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="nav" id="top">
+    <div class="nav__inner">
+      <a href="#top" class="brand" aria-label="GARA Hair Studio — kreu">
+        <span class="brand__small">Hair</span>
+        <span class="brand__name">GARA</span>
+        <span class="brand__small">Studio</span>
+      </a>
+      <nav class="nav__links" aria-label="Navigimi kryesor">
+        <a href="#studio">Studio</a>
+        <a href="#sherbimet">Shërbimet</a>
+        <a href="#kontakti">Kontakti</a>
+      </nav>
+      <a href="#rezervo" class="btn btn--small">Rezervo</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero__grain" aria-hidden="true"></div>
+      <div class="hero__content">
+        <p class="eyebrow eyebrow--ruled">The Art of the Cut</p>
+        <h1 class="hero__title">
+          <span class="hero__side">Hair</span>
+          <span class="hero__name">GARA</span>
+          <span class="hero__side">Studio</span>
+        </h1>
+        <p class="hero__lead">Barbershop për meshkuj në zemër të Prishtinës. Prerje të pastra, mjekër e rregulluar me përpikëri dhe një karrige ku ke kohë për veten.</p>
+        <div class="hero__actions">
+          <a href="#rezervo" class="btn">Rezervo terminin</a>
+          <a href="tel:+38349399744" class="btn btn--ghost">+383 49 399 744</a>
+        </div>
+      </div>
+      <a href="#studio" class="hero__scroll" aria-label="Lëviz poshtë">
+        <span></span>
+      </a>
+    </section>
+
+    <!-- STUDIO -->
+    <section class="section" id="studio">
+      <div class="container split">
+        <div class="split__label">
+          <p class="eyebrow">01 — Studio</p>
+        </div>
+        <div class="split__body">
+          <h2 class="h2">Mjeshtëri e vjetër,<br><em>stil i sotëm.</em></h2>
+          <p class="lead">GARA Hair Studio është krijuar për burrin që e di se një prerje e mirë nuk është luks — është mënyra si hyn në çdo takim, në çdo ditë.</p>
+          <p>Çdo termin fillon me një bisedë të shkurtër: çfarë të pëlqen, si e mban flokun, sa kohë ke në mëngjes. Pastaj punojmë me gërshërë, makinë dhe brisk derisa rezultati të jetë i saktë — jo afërsisht. Pa nxitim, pa radhë të gjata, vetëm me termin.</p>
+
+          <ul class="pillars">
+            <li>
+              <span class="pillars__num">I</span>
+              <h3>Precizion</h3>
+              <p>Linja të pastra dhe fade të shkallëzuar pa kalime të dukshme.</p>
+            </li>
+            <li>
+              <span class="pillars__num">II</span>
+              <h3>Higjienë</h3>
+              <p>Vegla të sterilizuara dhe brisk njëpërdorimësh për çdo klient.</p>
+            </li>
+            <li>
+              <span class="pillars__num">III</span>
+              <h3>Koha jote</h3>
+              <p>Punojmë me termine që ti të mos presësh — ulesh dhe fillojmë.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="section section--tint" id="sherbimet">
+      <div class="container split">
+        <div class="split__label">
+          <p class="eyebrow">02 — Shërbimet</p>
+        </div>
+        <div class="split__body">
+          <h2 class="h2">Menuja</h2>
+          <ul class="menu" id="serviceMenu">
+            <!-- populated from script.js (SERVICES) -->
+          </ul>
+          <p class="note">Çmimet janë në euro. Për kërkesa të veçanta, na shkruaj ose telefono.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- BOOKING -->
+    <section class="section" id="rezervo">
+      <div class="container split">
+        <div class="split__label">
+          <p class="eyebrow">03 — Rezervo</p>
+        </div>
+        <div class="split__body">
+          <h2 class="h2">Cakto terminin</h2>
+          <p class="lead">Zgjidh shërbimin, ditën dhe orën. Termini ruhet direkt në kalendarin e telefonit tënd dhe na dërgohet neve për konfirmim.</p>
+
+          <form class="booking" id="bookingForm" novalidate>
+            <fieldset class="step">
+              <legend><span class="step__n">1</span> Shërbimi</legend>
+              <div class="choices" id="serviceChoices" role="radiogroup" aria-label="Shërbimi"></div>
+            </fieldset>
+
+            <fieldset class="step">
+              <legend><span class="step__n">2</span> Dita</legend>
+              <div class="days" id="dayChoices" role="radiogroup" aria-label="Dita"></div>
+            </fieldset>
+
+            <fieldset class="step">
+              <legend><span class="step__n">3</span> Ora</legend>
+              <div class="times" id="timeChoices" role="radiogroup" aria-label="Ora">
+                <p class="muted">Zgjidh një ditë për të parë oraret.</p>
+              </div>
+            </fieldset>
+
+            <fieldset class="step">
+              <legend><span class="step__n">4</span> Të dhënat</legend>
+              <div class="fields">
+                <label class="field">
+                  <span>Emri dhe mbiemri</span>
+                  <input type="text" name="name" id="name" autocomplete="name" required placeholder="p.sh. Arben Krasniqi">
+                </label>
+                <label class="field">
+                  <span>Numri i telefonit</span>
+                  <input type="tel" name="phone" id="phone" autocomplete="tel" required placeholder="+383 4x xxx xxx">
+                </label>
+                <label class="field field--full">
+                  <span>Shënim <em>(opsionale)</em></span>
+                  <input type="text" name="note" id="note" placeholder="p.sh. fade i ulët, mjekra e shkurtër">
+                </label>
+              </div>
+            </fieldset>
+
+            <div class="summary" id="summary" aria-live="polite">
+              <div class="summary__row"><span>Shërbimi</span><strong data-sum="service">—</strong></div>
+              <div class="summary__row"><span>Data</span><strong data-sum="date">—</strong></div>
+              <div class="summary__row"><span>Ora</span><strong data-sum="time">—</strong></div>
+              <div class="summary__row"><span>Kohëzgjatja</span><strong data-sum="duration">—</strong></div>
+            </div>
+
+            <p class="form-error" id="formError" role="alert" hidden></p>
+            <button type="submit" class="btn btn--block">Konfirmo terminin</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section section--tint" id="kontakti">
+      <div class="container split">
+        <div class="split__label">
+          <p class="eyebrow">04 — Kontakti</p>
+        </div>
+        <div class="split__body">
+          <h2 class="h2">Na gjen në Prishtinë</h2>
+
+          <div class="info">
+            <div class="info__block">
+              <h3>Orari</h3>
+              <dl class="hours" id="hoursList"></dl>
+            </div>
+            <div class="info__block">
+              <h3>Telefoni</h3>
+              <p><a href="tel:+38349399744">+383 49 399 744</a></p>
+              <p><a href="tel:+38349518443">+383 49 518 443</a></p>
+              <h3 class="mt">Rrjetet</h3>
+              <p><a href="https://www.instagram.com/garahairstudio/" target="_blank" rel="noopener">Instagram · @garahairstudio</a></p>
+            </div>
+          </div>
+
+          <div class="map">
+            <iframe
+              title="Harta — GARA Hair Studio"
+              src="https://www.google.com/maps?q=GARA+Hair+Studio+Prishtin%C3%AB&output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+          <a class="btn btn--ghost" id="mapsLink" href="https://maps.app.goo.gl/t7w5636ooQhJodsd7" target="_blank" rel="noopener">Hap në Google Maps</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="brand brand--footer">
+        <span class="brand__small">Hair</span>
+        <span class="brand__name">GARA</span>
+        <span class="brand__small">Studio</span>
+      </div>
+      <p>Men's Grooming &amp; Haircuts · Prishtinë</p>
+      <p class="muted">© <span id="year"></span> GARA Hair Studio</p>
+    </div>
+  </footer>
+
+  <!-- Confirmation dialog -->
+  <dialog class="dialog" id="confirmDialog" aria-labelledby="dlgTitle">
+    <div class="dialog__inner">
+      <p class="eyebrow">Termini u përgatit</p>
+      <h2 class="h3" id="dlgTitle">Faleminderit, <span data-dlg="name"></span>.</h2>
+      <p class="dialog__when" data-dlg="when"></p>
+
+      <ol class="dialog__steps">
+        <li>
+          <strong>Ruaje në kalendar</strong>
+          <span>Në iPhone hapet direkt aplikacioni Calendar me kujtesë 1 orë para.</span>
+          <div class="dialog__row">
+            <button type="button" class="btn btn--small" id="icsBtn">Apple / iPhone Calendar</button>
+            <a class="btn btn--small btn--ghost" id="gcalBtn" target="_blank" rel="noopener">Google Calendar</a>
+          </div>
+        </li>
+        <li>
+          <strong>Dërgoje te ne për konfirmim</strong>
+          <span>Mesazhi është i shkruar gati — vetëm shtyp “Dërgo”.</span>
+          <div class="dialog__row">
+            <a class="btn btn--small" id="waBtn" target="_blank" rel="noopener">WhatsApp</a>
+            <a class="btn btn--small btn--ghost" id="viberBtn">Viber</a>
+            <a class="btn btn--small btn--ghost" id="smsBtn">SMS</a>
+          </div>
+        </li>
+      </ol>
+
+      <button type="button" class="dialog__close" id="dlgClose" aria-label="Mbyll">×</button>
+    </div>
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -5,7 +5,7 @@
 
 const CONFIG = {
   name: "GARA Hair Studio",
-  address: "Prishtinë, Kosovë",
+  address: "Rr. Jakov Xoxa, 10000 Prishtinë, Kosovë",
   timeZone: "Europe/Belgrade", // zona kohore e Kosovës (CET/CEST)
   mapsUrl: "https://maps.app.goo.gl/t7w5636ooQhJodsd7",
   // numri ku vijnë rezervimet (WhatsApp / Viber / SMS), pa "+" dhe pa hapësira

@@ -1,6 +1,6 @@
 # GARA Hair Studio
 
-Faqe/aplikacion për GARA Hair Studio — barbershop për meshkuj në Prishtinë.
+Faqe/aplikacion për GARA Hair Studio — barbershop për meshkuj në Rr. Jakov Xoxa, 10000 Prishtinë.
 
 Faqe statike (HTML, CSS, JS), pa server. Mund të hapet direkt ose të publikohet në GitHub Pages / Netlify / Vercel.
 

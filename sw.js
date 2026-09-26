@@ -1,6 +1,6 @@
 // Minimal offline cache so the site works as an installable app.
-const CACHE = "gara-v1";
-const ASSETS = ["./", "index.html", "styles.css", "script.js", "assets/logo.svg", "assets/icon-192.png"];
+const CACHE = "gara-v2";
+const ASSETS = ["./", "index.html", "styles.css", "script.js", "assets/logo.svg", "assets/icon-192.png", "assets/storefront.jpg"];
 
 self.addEventListener("install", (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(ASSETS)));

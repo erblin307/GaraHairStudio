@@ -232,20 +232,20 @@
   <!-- Confirmation dialog -->
   <dialog class="dialog" id="confirmDialog" aria-labelledby="dlgTitle">
     <div class="dialog__inner">
-      <p class="eyebrow">Termini u përgatit</p>
+      <p class="eyebrow" id="dlgEyebrow">Termini u përgatit</p>
       <h2 class="h3" id="dlgTitle">Faleminderit, <span data-dlg="name"></span>.</h2>
       <p class="dialog__when" data-dlg="when"></p>
 
       <ol class="dialog__steps">
         <li>
           <strong>Ruaje në kalendar</strong>
-          <span>Në iPhone hapet direkt aplikacioni Calendar me kujtesë 1 orë para.</span>
+          <span id="dlgCalHint">Në iPhone hapet direkt aplikacioni Calendar me kujtesë 1 orë para.</span>
           <div class="dialog__row">
             <button type="button" class="btn btn--small" id="icsBtn">Apple / iPhone Calendar</button>
             <a class="btn btn--small btn--ghost" id="gcalBtn" target="_blank" rel="noopener">Google Calendar</a>
           </div>
         </li>
-        <li>
+        <li id="dlgSend">
           <strong>Dërgoje te ne për konfirmim</strong>
           <span>Mesazhi është i shkruar gati — vetëm shtyp “Dërgo”.</span>
           <div class="dialog__row">

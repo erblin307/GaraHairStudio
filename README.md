@@ -9,6 +9,7 @@ Faqe statike (HTML, CSS, JS), pa server. Mund të hapet direkt ose të publikohe
 - **Rezervim termini**: klienti zgjedh shërbimin, ditën dhe orën, pastaj
   - e ruan terminin në **iPhone Calendar** (skedar `.ics`, me kujtesë 1 orë para) ose në **Google Calendar**
   - ta dërgon kërkesën me mesazh të shkruar gati në **WhatsApp / Viber / SMS** te +383 49 399 744
+- **Lidhje me Google Calendar të studios** (opsionale): rezervimet hyjnë direkt në kalendarin e puntorëve dhe oraret e zëna bllokohen. Udhëzimet: [`google-apps-script/UDHEZIME.md`](google-apps-script/UDHEZIME.md)
 - Instalohet si aplikacion në telefon (Safari → Share → *Add to Home Screen*)
 
 ## Si ndryshohen të dhënat

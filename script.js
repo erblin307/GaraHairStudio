@@ -10,6 +10,9 @@ const CONFIG = {
   mapsUrl: "https://maps.app.goo.gl/t7w5636ooQhJodsd7",
   // numri ku vijnë rezervimet (WhatsApp / Viber / SMS), pa "+" dhe pa hapësira
   bookingPhone: "38349399744",
+  // Linku i Google Apps Script (shiko google-apps-script/UDHEZIME.md).
+  // Kur është bosh, rezervimi dërgohet vetëm me WhatsApp / Viber / SMS.
+  bookingApi: "",
   slotMinutes: 30,
   daysAhead: 14,
   // orari: 0 = e diel ... 6 = e shtunë; null = mbyllur
@@ -65,6 +68,22 @@ function selectIn(container, el) {
 
 const state = { service: null, date: null, time: null };
 
+/* ---------- busy times from the studio calendar ---------- */
+
+const busyCache = {};          // "YYYY-MM-DD" -> [[startMin, endMin], ...]
+const dateKey = (d) => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+
+async function loadBusy(date, force = false) {
+  const key = dateKey(date);
+  if (!CONFIG.bookingApi) return [];
+  if (!force && busyCache[key]) return busyCache[key];
+  const res = await fetch(`${CONFIG.bookingApi}?date=${key}`);
+  const data = await res.json();
+  if (!data.ok) throw new Error(data.error || "busy_failed");
+  busyCache[key] = data.busy;
+  return data.busy;
+}
+
 /* ---------- render: services menu + choices ---------- */
 
 function renderServices() {
@@ -118,7 +137,7 @@ function renderDays() {
         state.date = d;
         state.time = null;
         selectIn(wrap, c);
-        renderTimes();
+        refreshTimes();
         updateSummary();
       });
     }
@@ -128,7 +147,7 @@ function renderDays() {
 
 /* ---------- render: times ---------- */
 
-function availableSlots(date, duration) {
+function availableSlots(date, duration, busy = []) {
   const open = CONFIG.hours[date.getDay()];
   if (!open) return [];
   const start = toMin(open[0]);
@@ -144,9 +163,25 @@ function availableSlots(date, duration) {
 
   const slots = [];
   for (let m = start; m + duration <= end; m += CONFIG.slotMinutes) {
-    slots.push({ min: m, disabled: m < earliest });
+    const taken = busy.some(([s, e]) => m < e && m + duration > s);
+    slots.push({ min: m, disabled: m < earliest || taken });
   }
   return slots.filter((s) => !s.disabled).length ? slots : [];
+}
+
+// Fetch the day's busy times (if the calendar is connected), then draw the slots.
+async function refreshTimes(force = false) {
+  const date = state.date;
+  if (!date || !CONFIG.bookingApi) return renderTimes();
+  if (force || !busyCache[dateKey(date)]) {
+    $("#timeChoices").innerHTML = `<p class="muted">Duke ngarkuar oraret e lira…</p>`;
+  }
+  try {
+    await loadBusy(date, force);
+  } catch (err) {
+    busyCache[dateKey(date)] = null; // show all slots; the calendar re-checks on submit
+  }
+  if (state.date === date) renderTimes();
 }
 
 function renderTimes() {
@@ -159,7 +194,7 @@ function renderTimes() {
   }
 
   const duration = state.service ? state.service.duration : CONFIG.slotMinutes;
-  const slots = availableSlots(state.date, duration);
+  const slots = availableSlots(state.date, duration, busyCache[dateKey(state.date)] || []);
 
   if (!slots.length) {
     wrap.innerHTML = `<p class="muted">Nuk ka orare të lira për këtë ditë.</p>`;
@@ -311,7 +346,25 @@ function showError(msg) {
   el.hidden = !msg;
 }
 
-function onSubmit(e) {
+async function sendToCalendar(booking) {
+  const res = await fetch(CONFIG.bookingApi, {
+    method: "POST",
+    // text/plain keeps this a "simple" request, which Apps Script accepts without CORS preflight
+    headers: { "Content-Type": "text/plain;charset=utf-8" },
+    body: JSON.stringify({
+      service: booking.service,
+      duration: state.service.duration,
+      date: dateKey(state.date),
+      time: booking.time,
+      name: booking.name,
+      phone: booking.phone,
+      note: booking.note,
+    }),
+  });
+  return res.json();
+}
+
+async function onSubmit(e) {
   e.preventDefault();
   const name = $("#name");
   const phone = $("#phone");
@@ -339,6 +392,40 @@ function onSubmit(e) {
     note: $("#note").value.trim(),
   };
 
+  // With the studio calendar connected, the booking is written there directly.
+  let confirmed = false;
+  if (CONFIG.bookingApi) {
+    const btn = $("#bookingForm button[type=submit]");
+    btn.disabled = true;
+    btn.textContent = "Duke rezervuar…";
+    try {
+      const r = await sendToCalendar(booking);
+      if (r.ok) {
+        confirmed = true;
+        busyCache[dateKey(state.date)] = null;
+      } else if (r.error === "taken") {
+        state.time = null;
+        updateSummary();
+        await refreshTimes(true);
+        return showError("Ky orar sapo u zu nga dikush tjetër. Të lutem zgjidh një orë tjetër.");
+      } else if (r.error === "closed") {
+        return showError("Ky orar nuk është më i disponueshëm. Zgjidh një orë tjetër.");
+      }
+      // any other error: fall through to the WhatsApp / Viber / SMS flow
+    } catch (err) {
+      // network problem: fall through to the messaging flow
+    } finally {
+      btn.disabled = false;
+      btn.textContent = "Konfirmo terminin";
+    }
+  }
+
+  $("#dlgEyebrow").textContent = confirmed ? "Termini u rezervua" : "Termini u përgatit";
+  $("#dlgSend").hidden = confirmed;
+  $("#dlgCalHint").textContent = confirmed
+    ? "Termini është regjistruar te ne. Nëse do, ruaje edhe në kalendarin tënd — me kujtesë 1 orë para."
+    : "Në iPhone hapet direkt aplikacioni Calendar me kujtesë 1 orë para.";
+
   const msg = encodeURIComponent(bookingMessage(booking));
   $("[data-dlg=name]").textContent = booking.name.split(" ")[0];
   $("[data-dlg=when]").textContent = `${booking.service} · ${booking.date} · ora ${booking.time}`;
@@ -352,6 +439,13 @@ function onSubmit(e) {
   const dlg = $("#confirmDialog");
   if (typeof dlg.showModal === "function") dlg.showModal();
   else dlg.setAttribute("open", "");
+
+  if (confirmed) {
+    $("#bookingForm").reset();
+    state.time = null;
+    updateSummary();
+    refreshTimes(true);
+  }
 }
 
 /* ---------- hours list ---------- */

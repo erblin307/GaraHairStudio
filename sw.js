@@ -1,5 +1,5 @@
 // Minimal offline cache so the site works as an installable app.
-const CACHE = "gara-v3";
+const CACHE = "gara-v4";
 const ASSETS = ["./", "index.html", "styles.css", "script.js", "assets/logo.svg", "assets/icon-192.png", "assets/storefront.jpg"];
 
 self.addEventListener("install", (e) => {

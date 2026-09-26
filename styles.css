@@ -271,6 +271,16 @@ button { font: inherit; color: inherit; }
   color: rgba(232, 225, 207, .78);
 }
 
+.hero__tagline {
+  display: block;
+  margin-bottom: 6px;
+  font-family: var(--serif);
+  font-size: clamp(24px, 3vw, 30px);
+  font-style: italic;
+  line-height: 1.25;
+  color: var(--cream);
+}
+
 .hero__actions {
   display: flex;
   flex-wrap: wrap;
